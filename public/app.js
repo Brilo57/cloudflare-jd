@@ -15,6 +15,28 @@ const metaList = document.getElementById("meta-list");
 
 let currentBuyUrl = "";
 
+function openBuyLink(url) {
+  const ua = navigator.userAgent.toLowerCase();
+  const isAndroid = ua.includes("android");
+  const isIOS = /iphone|ipad|ipod/.test(ua);
+
+  if (isAndroid || isIOS) {
+    const appUrl = `openApp.jdMobile://virtual?params={"category":"jump","des":"m","url":"${encodeURIComponent(url)}"}`;
+    const startedAt = Date.now();
+
+    window.location.href = appUrl;
+
+    window.setTimeout(() => {
+      if (Date.now() - startedAt < 3200) {
+        window.location.href = url;
+      }
+    }, 3000);
+    return;
+  }
+
+  window.open(url, "_blank", "noopener");
+}
+
 function showStatus(message, isError = false) {
   statusText.textContent = message;
   statusCard.classList.remove("hidden");
@@ -114,7 +136,7 @@ buyButton.addEventListener("click", () => {
     return;
   }
 
-  window.location.href = currentBuyUrl;
+  openBuyLink(currentBuyUrl);
 });
 
 resetButton.addEventListener("click", () => {

@@ -20,17 +20,16 @@ function extractJdLink(rawInput) {
 }
 
 function normalizeItem(item) {
+  const firstImage = item.small_images ? String(item.small_images).split("|")[0] : "";
+
   return {
     title: item.title || "",
     shop_title: item.shop_title || "",
-    original_price: item.size || "",
     price_after_coupon: item.quanhou_jiage || "",
-    coupon_info: item.coupon_info || "",
     commission: item.tkfee3 || "",
-    good_rate: item.haopinglv || "",
-    volume: item.volume || "",
     description: item.jianjie || "",
-    buy_url: item.shorturl || ""
+    buy_url: item.shorturl || "",
+    image_url: firstImage || ""
   };
 }
 

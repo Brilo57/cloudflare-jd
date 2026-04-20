@@ -6,9 +6,9 @@
   --muted: #667085;
   --line: #d0d5dd;
   --line-strong: #98a2b3;
-  --brand: #175cd3;
-  --brand-strong: #1849a9;
-  --brand-soft: #eff4ff;
+  --brand: #c81623;
+  --brand-strong: #a5101c;
+  --brand-soft: #fff1f1;
   --danger: #b42318;
   --shadow: 0 2px 8px rgba(16, 24, 40, 0.1);
   --radius: 16px;
@@ -108,7 +108,7 @@ body {
 .textarea:focus {
   outline: none;
   border-color: var(--brand);
-  box-shadow: 0 0 0 4px rgba(23, 92, 211, 0.12);
+  box-shadow: 0 0 0 4px rgba(200, 22, 35, 0.12);
 }
 
 .button {
@@ -151,7 +151,7 @@ body {
 
 .status {
   background: var(--brand-soft);
-  border-color: #c7d7fe;
+  border-color: #fecaca;
 }
 
 .status.error {
@@ -185,7 +185,7 @@ body {
   align-items: center;
   min-height: 24px;
   padding: 0 8px;
-  border: 1px solid #c7d7fe;
+  border: 1px solid #fecaca;
   border-radius: 999px;
   background: var(--brand-soft);
   color: var(--brand-strong);
@@ -215,6 +215,20 @@ body {
   margin-top: 16px;
 }
 
+.image-wrap {
+  margin-top: 16px;
+}
+
+.result-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid #eaecf0;
+  background: #f8fafc;
+}
+
 .price-item {
   padding: 14px;
   border-radius: 12px;
@@ -234,35 +248,13 @@ body {
   line-height: 1.1;
 }
 
-.divider {
-  height: 1px;
-  margin: 16px 0;
-  background: #eaecf0;
+.rebate-card {
+  background: #fff7ed;
+  border-color: #fed7aa;
 }
 
-.meta-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin: 0;
-}
-
-.meta-list div {
-  padding: 12px;
-  border-radius: 12px;
-  background: #fcfcfd;
-  border: 1px solid #eaecf0;
-}
-
-.meta-list dt {
-  font-size: 0.82rem;
-}
-
-.meta-list dd {
-  margin-top: 6px;
-  font-size: 0.98rem;
-  font-weight: 700;
-  color: var(--text);
+.rebate {
+  color: #c2410c;
 }
 
 .desc {
@@ -319,8 +311,7 @@ body {
     font-size: 1.56rem;
   }
 
-  .price-block,
-  .meta-list {
+  .price-block {
     grid-template-columns: 1fr;
   }
 }

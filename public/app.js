@@ -8,10 +8,11 @@ const statusText = document.getElementById("status-text");
 const resultCard = document.getElementById("result-card");
 const resultTitle = document.getElementById("result-title");
 const resultShop = document.getElementById("result-shop");
+const imageWrap = document.getElementById("image-wrap");
+const resultImage = document.getElementById("result-image");
 const resultPrice = document.getElementById("result-price");
-const resultOriginal = document.getElementById("result-original");
+const resultCommission = document.getElementById("result-commission");
 const resultDesc = document.getElementById("result-desc");
-const metaList = document.getElementById("meta-list");
 
 let currentBuyUrl = "";
 
@@ -51,25 +52,9 @@ function hideStatus() {
 
 function hideResult() {
   resultCard.classList.add("hidden");
+  imageWrap.classList.add("hidden");
+  resultImage.removeAttribute("src");
   currentBuyUrl = "";
-}
-
-function renderMeta(items) {
-  metaList.innerHTML = "";
-
-  items.forEach(([label, value]) => {
-    if (!value && value !== 0) {
-      return;
-    }
-
-    const wrapper = document.createElement("div");
-    const dt = document.createElement("dt");
-    const dd = document.createElement("dd");
-    dt.textContent = label;
-    dd.textContent = value;
-    wrapper.append(dt, dd);
-    metaList.appendChild(wrapper);
-  });
 }
 
 form.addEventListener("submit", async (event) => {
@@ -107,18 +92,20 @@ form.addEventListener("submit", async (event) => {
     resultTitle.textContent = item.title || "未命名商品";
     resultShop.textContent = item.shop_title || "店铺信息暂无";
     resultPrice.textContent = item.price_after_coupon ? `¥${item.price_after_coupon}` : "暂无";
-    resultOriginal.textContent = item.original_price ? `¥${item.original_price}` : "暂无";
+    resultCommission.textContent = item.commission ? `¥${item.commission}` : "暂无";
+
+    if (item.image_url) {
+      resultImage.src = item.image_url;
+      resultImage.alt = item.title || "商品图片";
+      imageWrap.classList.remove("hidden");
+    } else {
+      imageWrap.classList.add("hidden");
+      resultImage.removeAttribute("src");
+    }
 
     const desc = item.description ? String(item.description).trim() : "";
     resultDesc.textContent = desc;
     resultDesc.classList.toggle("hidden", !desc);
-
-    renderMeta([
-      ["优惠券", item.coupon_info || "暂无"],
-      ["返利", item.commission ? `¥${item.commission}` : "暂无"],
-      ["月销量", item.volume || "暂无"],
-      ["好评率", item.good_rate ? `${item.good_rate}%` : "暂无"]
-    ]);
 
     resultCard.classList.remove("hidden");
     hideStatus();

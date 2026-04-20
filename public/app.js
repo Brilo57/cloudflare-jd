@@ -12,7 +12,6 @@ const imageWrap = document.getElementById("image-wrap");
 const resultImage = document.getElementById("result-image");
 const resultPrice = document.getElementById("result-price");
 const resultCommission = document.getElementById("result-commission");
-const resultDesc = document.getElementById("result-desc");
 
 let currentBuyUrl = "";
 
@@ -102,10 +101,6 @@ form.addEventListener("submit", async (event) => {
       imageWrap.classList.add("hidden");
       resultImage.removeAttribute("src");
     }
-
-    const desc = item.description ? String(item.description).trim() : "";
-    resultDesc.textContent = desc;
-    resultDesc.classList.toggle("hidden", !desc);
 
     resultCard.classList.remove("hidden");
     hideStatus();

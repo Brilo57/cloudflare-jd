@@ -10,8 +10,8 @@
   --brand-strong: #a5101c;
   --brand-soft: #fff1f1;
   --danger: #b42318;
-  --shadow: 0 2px 8px rgba(16, 24, 40, 0.1);
-  --radius: 16px;
+  --shadow: 0 1px 3px rgba(16, 24, 40, 0.08);
+  --radius: 8px;
 }
 
 * {
@@ -66,7 +66,6 @@ body {
 .subtext,
 .hint,
 .shop,
-.desc,
 .meta-label,
 .meta-list dt,
 .meta-list dd,
@@ -95,26 +94,27 @@ body {
 .textarea {
   width: 100%;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 14px;
   font: inherit;
   resize: vertical;
   min-height: 112px;
   color: var(--text);
   background: #fff;
-  transition: border-color 140ms ease, box-shadow 140ms ease;
+  transition: border-color 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
 }
 
 .textarea:focus {
   outline: none;
   border-color: var(--brand);
-  box-shadow: 0 0 0 4px rgba(200, 22, 35, 0.12);
+  box-shadow: 0 0 0 3px rgba(200, 22, 35, 0.1);
+  background: #fffdfd;
 }
 
 .button {
   appearance: none;
-  border: 0;
-  border-radius: 12px;
+  border: 1px solid var(--brand);
+  border-radius: 8px;
   min-height: 48px;
   padding: 0 18px;
   background: var(--brand);
@@ -122,12 +122,14 @@ body {
   font: inherit;
   font-weight: 700;
   cursor: pointer;
-  transition: background-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
-  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
+  letter-spacing: 0.01em;
+  transition: background-color 140ms ease, border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+  box-shadow: none;
 }
 
 .button:hover {
   background: var(--brand-strong);
+  border-color: var(--brand-strong);
 }
 
 .button:active {
@@ -140,13 +142,14 @@ body {
 }
 
 .button-secondary {
-  background: #f2f4f7;
+  background: #fff;
   color: var(--text);
   border: 1px solid var(--line);
 }
 
 .button-secondary:hover {
-  background: #eaecf0;
+  background: #f8fafc;
+  border-color: var(--line-strong);
 }
 
 .status {
@@ -224,14 +227,14 @@ body {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 8px;
   border: 1px solid #eaecf0;
   background: #f8fafc;
 }
 
 .price-item {
   padding: 14px;
-  border-radius: 12px;
+  border-radius: 8px;
   background: #f8fafc;
   border: 1px solid #eaecf0;
 }
@@ -255,15 +258,6 @@ body {
 
 .rebate {
   color: #c2410c;
-}
-
-.desc {
-  margin-top: 16px;
-  line-height: 1.6;
-  padding: 14px;
-  border-radius: 12px;
-  background: #fcfcfd;
-  border: 1px solid #eaecf0;
 }
 
 .actions {

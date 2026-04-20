@@ -37,3 +37,5 @@ wrangler pages dev public
 ## 域名
 
 如果你的域名已经托管在 Cloudflare，可以直接把自定义域名绑定到这个 Pages 项目。
+
+redeploy

@@ -81,15 +81,15 @@ form.addEventListener("submit", async (event) => {
 
     const data = await response.json();
 
-    if (!response.ok || !data.ok) {
+    if (!response.ok || !data.ok || !data.item) {
       throw new Error(data.error || "查询失败，请稍后重试。");
     }
 
     const item = data.item;
     currentBuyUrl = item.buy_url || "";
 
-    resultTitle.textContent = item.title || "未命名商品";
-    resultShop.textContent = item.shop_title || "店铺信息暂无";
+    resultTitle.textContent = item.title || (item.limited ? "商品转链成功" : "未命名商品");
+    resultShop.textContent = item.shop_title || (item.limited ? "" : "店铺信息暂无");
     resultPrice.textContent = item.price_after_coupon ? `¥${item.price_after_coupon}` : "暂无";
     resultCommission.textContent = item.commission ? `¥${item.commission}` : "暂无";
 
@@ -103,7 +103,12 @@ form.addEventListener("submit", async (event) => {
     }
 
     resultCard.classList.remove("hidden");
-    hideStatus();
+
+    if (item.limited) {
+      showStatus("转链成功，已生成推广链接。券后价和返利金额当前接口未返回，暂时无法展示。");
+    } else {
+      hideStatus();
+    }
   } catch (error) {
     showStatus(error.message || "查询失败，请稍后重试。", true);
     hideResult();

@@ -3,6 +3,7 @@ const input = document.getElementById("jd-input");
 const submitButton = document.getElementById("submit-button");
 const buyButton = document.getElementById("buy-button");
 const resetButton = document.getElementById("reset-button");
+const clearInputButton = document.getElementById("clear-input");
 const statusCard = document.getElementById("status-card");
 const statusText = document.getElementById("status-text");
 const resultCard = document.getElementById("result-card");
@@ -55,6 +56,20 @@ function hideResult() {
   resultImage.removeAttribute("src");
   currentBuyUrl = "";
 }
+
+function syncClearButton() {
+  clearInputButton.classList.toggle("hidden", input.value.trim().length === 0);
+}
+
+input.addEventListener("input", syncClearButton);
+
+clearInputButton.addEventListener("click", () => {
+  input.value = "";
+  syncClearButton();
+  hideStatus();
+  hideResult();
+  input.focus();
+});
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -128,6 +143,7 @@ buyButton.addEventListener("click", () => {
 
 resetButton.addEventListener("click", () => {
   input.value = "";
+  syncClearButton();
   hideStatus();
   hideResult();
   input.focus();
